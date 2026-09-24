@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.pacman.name }}-deployment
+  labels:
+    app: {{ .Values.pacman.name }}
+spec:
+  replicas: {{ .Values.pacman.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.pacman.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.pacman.name }}
+    spec:
+      containers:
+      - name: {{ .Values.pacman.name }}
+        image: "{{ .Values.pacman.image.repository }}:{{ .Values.pacman.image.tag }}"
+        imagePullPolicy: {{ .Values.pacman.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.pacman.service.targetPort }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.pacman.name }}-service
+  labels:
+    app: {{ .Values.pacman.name }}
+spec:
+  type: {{ .Values.pacman.service.type }}
+  selector:
+    app: {{ .Values.pacman.name }}
+  ports:
+  - port: {{ .Values.pacman.service.port }}
+    targetPort: {{ .Values.pacman.service.targetPort }}
+    nodePort: {{ .Values.pacman.service.nodePort }}

@@ -1,0 +1,25 @@
+pacman:
+  name: pacman
+  replicas: 3
+  image:
+    repository: local-pacman
+    tag: latest
+    pullPolicy: Never
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 80
+    nodePort: 30080
+
+doom:
+  name: doom
+  replicas: 2
+  image:
+    repository: local-doom
+    tag: latest
+    pullPolicy: Never
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 80
+    nodePort: 30081
