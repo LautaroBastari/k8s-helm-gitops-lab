@@ -1,6 +1,6 @@
 pacman:
   name: pacman
-  replicas: 3
+  replicas: 1
   image:
     repository: local-pacman
     tag: latest
