@@ -1,0 +1,6 @@
+image:
+  repository: local-pacman
+  tag: "2.0"
+replicas: 2
+containerPort: 80
+servicePort: 80

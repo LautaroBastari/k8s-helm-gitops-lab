@@ -1,0 +1,6 @@
+image:
+  repository: local-doom
+  tag: "1.0"
+replicas: 2
+containerPort: 80
+servicePort: 80
